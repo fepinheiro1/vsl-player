@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Minha VSL</title>
+  <meta name="robots" content="noindex" />
+  <style>
+    /* página de VSL: sem menu, sem rodapé, sem nada que tire o olho do vídeo */
+    html, body { margin: 0; background: #0B0B12; color: #fff; font-family: system-ui, sans-serif; }
+    .wrap { display: flex; flex-direction: column; align-items: center; gap: 12px;
+            padding: calc(env(safe-area-inset-top, 0px) + 16px) 22px calc(env(safe-area-inset-bottom, 0px) + 26px); }
+    /* vídeo vertical 9:16 cabendo na altura da tela, capado a 440px no desktop */
+    .player { width: min(440px, 100%, calc((100dvh - 120px) * 0.5625)); }
+    .cta { width: 100%; max-width: 440px; }
+    .cta button { width: 100%; padding: 18px 28px; font-size: 19px; font-weight: 800; border: 0; border-radius: 16px;
+                  cursor: pointer; color: #0B0B12; background: linear-gradient(135deg, #0EA5E9, #22D3EE);
+                  animation: cta-in .5s ease both; }
+    @keyframes cta-in { from { opacity: 0; transform: translateY(14px) } to { opacity: 1; transform: none } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="player" id="vsl"></div>
+    <div class="cta" id="cta" hidden>
+      <button type="button" onclick="location.href='/checkout'">Quero começar</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1/dist/hls.min.js"></script>
+  <script src="vsl-player.js"></script>
+  <script>
+    // ?preview=1 mostra o CTA de cara — pra revisar sem esperar o vídeo
+    var preview = new URLSearchParams(location.search).get('preview') === '1';
+    if (preview) document.getElementById('cta').hidden = false;
+
+    VslPlayer.create(document.getElementById('vsl'), {
+      src: 'https://SEU-CDN/vsl/index.m3u8',
+      poster: 'https://SEU-CDN/vsl/poster.jpg',
+      revealSecondsFromEnd: 10,
+      onStart:    function ()  { track('vsl_video_start'); },
+      onProgress: function (p) { track('vsl_progress_' + p); },
+      onReveal:   function ()  { track('vsl_cta_reveal'); document.getElementById('cta').hidden = false; },
+      onEnded:    function ()  { track('vsl_video_ended'); },
+    });
+
+    function track(name) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: name });
+      if (window.gtag) gtag('event', name);
+      if (window.fbq) fbq('trackCustom', name);
+    }
+  </script>
+</body>
+</html>
