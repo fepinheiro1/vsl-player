@@ -7,6 +7,10 @@ oferta.
 
 - Sem header, menu, rodapé, WhatsApp flutuante, popup, cookie banner grande. Se o site
   tem esses elementos globais, esconda-os nesta rota.
+- Isso vale pra página **nova**. Quando o pedido é trocar o player numa página existente,
+  respeite o que está lá e sugira o enxugamento como próximo passo — a pessoa pode ter
+  motivo pra manter depoimentos ou rodapé (política de privacidade exigida pelo anúncio,
+  por exemplo).
 - Fundo escuro (o vídeo fica mais presente) com um leve gradiente/glow atrás do player.
 - **Mobile-first.** A maioria do tráfego pago chega pelo celular.
 - Vídeo vertical (9:16): largura `min(440px, 100%, calc((100dvh - 120px) * 0.5625))` —

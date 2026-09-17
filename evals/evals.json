@@ -1,0 +1,74 @@
+{
+  "skill_name": "vsl-player",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "preciso de uma página de vsl nesse projeto next. o vídeo é o vsl-mentoria.mp4 que tá na raiz (gravei no celular, vertical, uns 20s). quero tipo a vturb: começa sozinho, sem controle nenhum, a pessoa não pode pular, e o botão 'Quero minha vaga' só aparece nos últimos 5 segundos e vai pro checkout https://pay.hotmart.com/M99887766. a rota pode ser /vsl. ah, e na página da vsl não pode aparecer o header nem o footer do site. eu uso supabase storage nos outros projetos, pode usar aqui tb",
+      "expected_output": "Rota /vsl sem Header/Footer, componente de player com hls.js ('use client'), autoplay mudo com botão de som que reinicia, anti-seek, sem controles, barra sem tempo, CTA renderizado só no reveal (últimos 5s) linkando pro Hotmart, vídeo convertido pra HLS (pasta com index.m3u8/seg/poster) e instrução de upload pro Supabase Storage.",
+      "files": [
+        "fixtures/next-app/"
+      ],
+      "assertions": [
+        "Player sem controles nativos: nenhum atributo `controls` no <video> e sem iframe do YouTube/Vimeo",
+        "Anti-seek implementado: handler de seeking/timeupdate que impede avançar além do já assistido",
+        "Autoplay mudo com botão/overlay pra ativar o som (muted=true + play() + clique que desliga o mute)",
+        "Barra de progresso própria sem exibir tempo (nenhum mm:ss / currentTime renderizado como texto)",
+        "CTA ausente do DOM até o reveal (render condicional ou inserido por JS), não apenas display:none inicial",
+        "Vídeo convertido pra HLS: existe index.m3u8 + segmentos .ts + poster no projeto (ou instrução clara e comando ffmpeg no NOTAS.md)",
+        "Bloqueio de download/PiP: contextmenu prevenido e/ou controlsList=nodownload e/ou disablePictureInPicture",
+        "NOTAS.md existe em pt-BR e diz o que o usuário ainda precisa fazer (upload/URL)",
+        "Rota /vsl criada (app/vsl/page.tsx) e Header/Footer NÃO renderizam nela (layout próprio ou condicional)",
+        "CTA 'Quero minha vaga' linka pra https://pay.hotmart.com/M99887766 e só aparece nos últimos ~5s",
+        "Componente do player é client component ('use client') e usa hls.js (import ou instrução de npm i hls.js)",
+        "Player vertical 9:16 dimensionado pra caber na tela do celular",
+        "Instrução de hospedagem no Supabase Storage (bucket público, URL do m3u8)"
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "minha landing é html puro (index.html + style.css), hospedada na hostinger. hoje tem um iframe do youtube no hero. quero trocar por um player de vendas estilo vturb, sem os controles, sem deixar avançar, e o botão de comprar só aparecer depois de 3 minutos de vídeo (é quando eu falo o preço). o vídeo é o video-vendas.mp4 nessa pasta, horizontal. não tenho conta em cdn nenhum, o que vc sugere?",
+      "expected_output": "Substituição do iframe por player vanilla (vsl-player.js + hls.js via CDN), 16:9, revealAtSecond=180, botão Hotmart escondido até o reveal, vídeo convertido pra HLS ou explicação de fallback mp4, sugestão de hospedagem (R2/Bunny ou a própria Hostinger com CORS/Content-Type), gtag já existente aproveitado nos eventos, sem elementos que distraem.",
+      "files": [
+        "fixtures/html-landing/"
+      ],
+      "assertions": [
+        "Player sem controles nativos: nenhum atributo `controls` no <video> e sem iframe do YouTube/Vimeo",
+        "Anti-seek implementado: handler de seeking/timeupdate que impede avançar além do já assistido",
+        "Autoplay mudo com botão/overlay pra ativar o som (muted=true + play() + clique que desliga o mute)",
+        "Barra de progresso própria sem exibir tempo (nenhum mm:ss / currentTime renderizado como texto)",
+        "CTA ausente do DOM até o reveal (render condicional ou inserido por JS), não apenas display:none inicial",
+        "Vídeo convertido pra HLS: existe index.m3u8 + segmentos .ts + poster no projeto (ou instrução clara e comando ffmpeg no NOTAS.md)",
+        "Bloqueio de download/PiP: contextmenu prevenido e/ou controlsList=nodownload e/ou disablePictureInPicture",
+        "NOTAS.md existe em pt-BR e diz o que o usuário ainda precisa fazer (upload/URL)",
+        "iframe do YouTube removido do index.html e substituído pelo player próprio",
+        "Reveal do botão de comprar aos 180s (revealAtSecond/currentTime>=180), não 'últimos N segundos'",
+        "Player horizontal 16:9",
+        "Recomendação concreta de hospedagem pra quem não tem CDN (ex.: R2/Bunny/própria Hostinger) com nota sobre CORS e Content-Type do .m3u8/.ts",
+        "Elementos que distraem (header/depoimentos/footer) tratados: removidos, escondidos ou movidos abaixo do CTA com justificativa"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "a página /apresentacao do app usa um embed do youtube e o pessoal do marketing quer saber onde as pessoas param de assistir. troca por um player próprio tipo vturb (sem controles, não pode adiantar, barra de progresso sem mostrar o tempo) e manda os marcos de retenção pro GA4 usando o helper que já existe em src/lib/analytics.ts. o botão de assinar tem que aparecer só no final do vídeo. arquivo: apresentacao-nutriplan.mp4",
+      "expected_output": "VslPage.tsx reescrita com VslPlayer (hls.js), eventos vsl_video_start/progress_25..95/cta_reveal/ended via trackEvent existente, CTA condicional no reveal, vídeo em HLS em public/ ou instrução de bucket, sem iframe do YouTube.",
+      "files": [
+        "fixtures/vite-react/"
+      ],
+      "assertions": [
+        "Player sem controles nativos: nenhum atributo `controls` no <video> e sem iframe do YouTube/Vimeo",
+        "Anti-seek implementado: handler de seeking/timeupdate que impede avançar além do já assistido",
+        "Autoplay mudo com botão/overlay pra ativar o som (muted=true + play() + clique que desliga o mute)",
+        "Barra de progresso própria sem exibir tempo (nenhum mm:ss / currentTime renderizado como texto)",
+        "CTA ausente do DOM até o reveal (render condicional ou inserido por JS), não apenas display:none inicial",
+        "Vídeo convertido pra HLS: existe index.m3u8 + segmentos .ts + poster no projeto (ou instrução clara e comando ffmpeg no NOTAS.md)",
+        "Bloqueio de download/PiP: contextmenu prevenido e/ou controlsList=nodownload e/ou disablePictureInPicture",
+        "NOTAS.md existe em pt-BR e diz o que o usuário ainda precisa fazer (upload/URL)",
+        "Usa o helper trackEvent de src/lib/analytics.ts (import) em vez de gtag direto",
+        "Eventos de retenção separados por marco (25/50/75/95 como nomes distintos ou parâmetro claro), mais video_start e cta_reveal",
+        "Marcos disparam uma vez cada e só após som ativado (não contam o preview mudo)",
+        "Botão 'Assinar o NutriPlan' aparece só no reveal (final do vídeo) e mantém o link https://app.nutriplan.com.br/assinar",
+        "Sem iframe do YouTube em VslPage.tsx; hls.js referenciado (import + nota de npm i)"
+      ]
+    }
+  ]
+}

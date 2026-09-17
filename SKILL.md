@@ -71,6 +71,12 @@ não tem ffmpeg, o script diz como instalar. Se não tem o vídeo ainda, monte t
 Sem tempo pra HLS? O player aceita `src` de um `.mp4` direto e tudo funciona — só fica
 fácil de baixar. Diga isso ao usuário e siga.
 
+Confira a duração do arquivo (`ffprobe -show_entries format=duration -v quiet -of csv=p=0
+video.mp4`) contra o momento do reveal. Se o usuário pediu "botão aos 3 minutos" e o vídeo
+tem 20 segundos, ele te mandou um placeholder ou o vídeo errado — configure a regra como
+pedida, avise a diferença nas notas finais e deixe o comando de reconversão pronto pro
+vídeo definitivo. Nunca "corrija" o reveal pra caber no placeholder.
+
 ### 4. Hospedar
 
 Leia `references/hospedagem.md`. Resumo: qualquer bucket público com CORS `*` e
@@ -85,8 +91,11 @@ Depois do upload, teste com `curl -sI` antes de seguir. Falta de CORS é a causa
 
 Leia `references/pagina-e-cta.md`. Os pontos que mais importam:
 
-- Página de **uma coisa só**: sem header, menu, rodapé, WhatsApp flutuante. Esconda os
-  globais nesta rota.
+- Uma VSL converte melhor como página de **uma coisa só**: sem header, menu, rodapé,
+  WhatsApp flutuante. Se o usuário pediu uma página nova, nasça assim e esconda os globais
+  nessa rota. Se ele pediu só pra trocar o player numa página que já existe, troque o
+  player — não refaça a página dele sem pedir — e ofereça a versão enxuta como próximo
+  passo nas notas.
 - Vídeo vertical: largura `min(440px, 100%, calc((100dvh - 120px) * 0.5625))`.
 - CTA **renderizado condicionalmente** (não `display:none`) e revelado pelo `onReveal`,
   com animação curta e `scrollIntoView({ block: 'nearest' })`.
