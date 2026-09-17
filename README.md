@@ -13,21 +13,19 @@ Funciona em React/Next.js (componente `.tsx`), em qualquer framework ou HTML pur
 
 ## Instalar
 
-**Claude Code** — no seu projeto:
+No seu projeto, um comando serve pro Claude Code, Codex, Gemini CLI, Cursor e outros:
 
 ```bash
 npx skills add fepinheiro1/vsl-player
 ```
 
-ou manualmente:
+Sem `npx`? Clone direto na pasta de skills do agente:
 
 ```bash
+# Claude Code (projeto)
 git clone https://github.com/fepinheiro1/vsl-player .claude/skills/vsl-player
-```
 
-**Codex**:
-
-```bash
+# Codex (global)
 git clone https://github.com/fepinheiro1/vsl-player ~/.codex/skills/vsl-player
 ```
 
