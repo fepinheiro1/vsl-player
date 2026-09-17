@@ -1,7 +1,7 @@
 # vsl-player
 
-Skill para **Claude Code** e **Codex** que monta um player de VSL estilo VTurb no seu
-projeto — sem mensalidade.
+Skill para **Claude Code** e **Codex** que monta um player de VSL profissional no seu
+projeto, em código aberto.
 
 Você descreve o que quer ("faz uma página de VSL com esse vídeo, botão aparece nos
 últimos 10 segundos") e a IA entrega: vídeo em HLS, autoplay mudo com botão de som que

@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════════════════════════════
-   vsl-player.js — player de VSL estilo VTurb, sem framework, sem mensalidade.
+   vsl-player.js — player de VSL profissional, sem framework.
 
    Uso mínimo:
      <script src="https://cdn.jsdelivr.net/npm/hls.js@1/dist/hls.min.js"></script>

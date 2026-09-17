@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Hls from 'hls.js';
 
 /* ══════════════════════════════════════════════════════════════════════
-   VslPlayer — player de VSL estilo VTurb, sem mensalidade.
+   VslPlayer — player de VSL profissional.
 
    O que ele faz (e por quê):
    - HLS via hls.js: o vídeo chega em pedaços pelo MSE, sem um .mp4 único
@@ -62,7 +62,7 @@ export interface VslPlayerProps {
   revealSecondsFromEnd?: number;
   /** alternativa: revelar o CTA num segundo específico (ex.: 180). Tem prioridade sobre revealSecondsFromEnd */
   revealAtSecond?: number;
-  /** ao ativar o som, volta pro início (estilo VTurb). Default true */
+  /** ao ativar o som, volta pro início. Default true */
   restartOnUnmute?: boolean;
   /** curva da barra fake. Default DEFAULT_BAR_STOPS */
   barStops?: BarStop[];

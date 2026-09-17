@@ -1,14 +1,13 @@
 ---
 name: vsl-player
-description: Monta um player de VSL (Video Sales Letter) estilo VTurb no projeto do usuário, sem pagar ferramenta — vídeo em HLS, autoplay mudo com botão de som que reinicia o vídeo, sem controles nem download, não deixa avançar, barra de progresso sem tempo, CTA que só aparece no momento da oferta e eventos de retenção (25/50/75/95%). Use sempre que o usuário falar em VSL, vídeo de vendas, página de vendas com vídeo, VTurb/Vturb, player de lançamento, "esconder os controles do vídeo", "não deixar pular o vídeo", "mostrar o botão só depois de X minutos", CTA atrasado, funil com vídeo ou landing de tráfego pago com vídeo — mesmo que não use a palavra "VSL". Também para converter um vídeo em HLS ou decidir onde hospedar o vídeo de uma página de vendas.
+description: Monta um player de VSL (Video Sales Letter) profissional no projeto do usuário — vídeo em HLS, autoplay mudo com botão de som que reinicia o vídeo, sem controles nem download, não deixa avançar, barra de progresso sem tempo, CTA que só aparece no momento da oferta e eventos de retenção (25/50/75/95%). Use sempre que o usuário falar em VSL, vídeo de vendas, página de vendas com vídeo, player de lançamento, player "tipo vturb" ou de outra ferramenta de VSL, "esconder os controles do vídeo", "não deixar pular o vídeo", "mostrar o botão só depois de X minutos", CTA atrasado, funil com vídeo ou landing de tráfego pago com vídeo — mesmo que não use a palavra "VSL". Também para converter um vídeo em HLS ou decidir onde hospedar o vídeo de uma página de vendas.
 ---
 
 # vsl-player
 
-Uma VSL é uma página com um vídeo que vende e um botão que aparece na hora certa. As
-ferramentas pagas (VTurb, Vturb, Panda, Converte.ai) vendem basicamente sete mecânicas
-de player. Esta skill entrega as sete em código que roda no projeto do usuário, com os
-arquivos prontos em `assets/`.
+Uma VSL é uma página com um vídeo que vende e um botão que aparece na hora certa. Um
+player de VSL profissional se resume a sete mecânicas. Esta skill entrega as sete em
+código que roda no projeto do usuário, com os arquivos prontos em `assets/`.
 
 ## As sete mecânicas (e por que cada uma existe)
 
