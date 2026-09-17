@@ -44,7 +44,8 @@
         "Reveal do botão de comprar aos 180s (revealAtSecond/currentTime>=180), não 'últimos N segundos'",
         "Player horizontal 16:9",
         "Recomendação concreta de hospedagem pra quem não tem CDN (ex.: R2/Bunny/própria Hostinger) com nota sobre CORS e Content-Type do .m3u8/.ts",
-        "Elementos que distraem (header/depoimentos/footer) tratados: removidos, escondidos ou movidos abaixo do CTA com justificativa"
+        "Página existente respeitada: header/depoimentos/rodapé mantidos (não refeita sem pedido) e versão enxuta sugerida nas notas",
+        "NOTAS avisa que o video-vendas.mp4 tem ~20s e que o reveal aos 180s só dispara com o vídeo definitivo (regra mantida em 180, não 'corrigida')"
       ]
     },
     {

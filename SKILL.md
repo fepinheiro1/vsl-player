@@ -63,7 +63,12 @@ Adapte só: cores (`accentColor`, `accentFromColor`, `glowColor` = cores da marc
 scripts/to-hls.sh video-original.mp4 hls
 ```
 
-Gera `hls/index.m3u8`, `hls/seg_NNN.ts` e `hls/poster.jpg`. Reencoda em H.264 mesmo se
+Gera `hls/index.m3u8`, `hls/seg_NNN.ts` e `hls/poster.jpg`.
+
+Se o HLS vai ficar dentro do repo (`public/`), lembre que **`seg_NNN.ts` tem a mesma
+extensão do TypeScript**: um `tsconfig` com `include: ["**/*.ts"]` tenta compilar os
+segmentos e derruba o build. Adicione `public` ao `exclude` do tsconfig (ou hospede num
+bucket, onde isso não existe). Reencoda em H.264 mesmo se
 o original já for MP4 — vídeo de iPhone vem em HEVC e não toca no Chrome. Se o usuário
 não tem ffmpeg, o script diz como instalar. Se não tem o vídeo ainda, monte tudo com um
 `.mp4` qualquer de placeholder e deixe a conversão pro final.
